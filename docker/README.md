@@ -60,10 +60,26 @@ Comandos com "docker volume"
 **docker volume inspect meuvolume** -> Mostra os dados do volume;
 
 ### Executar um container em cima do volume criado:
-docker run -d --name nginx -d --mount type=volume,source=meuvolume,target=/app 
-docker exec -it nginx bash
+**docker run -d --name nginx -d --mount type=volume,source=meuvolume,target=/app docker exec -it nginx bash**   
 **Testar a criação de um arquivo:** Acessar diretório app, criar arquivo (touch teste) e listar arquivo (ls);
 
-docker run -d --name nginx2 -d -v meuvolume:/app nginx
+**docker run -d --name nginx2 -d -v meuvolume:/app nginx**
 
-docker volume prune -> Mata tudo o que não é utilizado de volumes;
+**docker volume prune** -> Mata tudo o que não é utilizado de volumes;
+
+# Trabalhando com imagens
+**Docker hub:** https://hub.docker.com/
+
+**docker images** -> Lista todas as imagens existentes;
+**docker rmi php:latest** -> Remove uma imagem;
+
+# Criando a primeira imagem com Dockerfile
+
+O Dockerfile é um dos arquivos principais onde queremos chegar (receita do bolo). Com o arquivo docker file, é possível partir de uma imagem e incluir outras dependências.
+
+### Criar minha primeira imagem e salvar no meu docker Hub
+
+**docker build -t rodrigodittrich/nginx-com-vim:latest .**
+
+**-t** -> Representa a minha tag na minha contya no docker hub;  
+**.** -> Representa em qual pasta existe meu Dockerfile;

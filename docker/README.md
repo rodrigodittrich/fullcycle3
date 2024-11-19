@@ -36,3 +36,34 @@ Utilização do comando exec;
 
 É necessário rodar com modo interativo e com ttui para rodar os comando dentro do container.
 **docker exec -it ngnix bash** -> Acessado via terminal o container do ngnix;
+
+
+# Alterar arquivo index.html do ingnix
+
+**Acessar o deretóio:** cd /usr/share/nginx/html/
+
+**Importante:** Tudo o que é alterado dentro de um container, depois que remover o container e subir ele novamente, o que foi feito anteriormente será perdido.
+
+# Iniciando o container com bind mounts
+### Exemplos
+docker run -d --name nginx -p 8080:80 -v /Users/rodrigodittrich/Projetos/fullcycle3/docker/html/:/usr/share/nginx/html nginx
+
+docker run -d --name nginx -p 8080:80 --mount type=bind,source="$(pwd)"/html,target=/usr/share/nginx/html nginx
+
+# Trabalhando com volumes
+Comandos com "docker volume"
+
+**docker volume ls** -> Lista os volumes criados;
+
+**docker volume create meuvolume** -> Cria um novo volume com o nome "meuvolume";
+
+**docker volume inspect meuvolume** -> Mostra os dados do volume;
+
+### Executar um container em cima do volume criado:
+docker run -d --name nginx -d --mount type=volume,source=meuvolume,target=/app 
+docker exec -it nginx bash
+**Testar a criação de um arquivo:** Acessar diretório app, criar arquivo (touch teste) e listar arquivo (ls);
+
+docker run -d --name nginx2 -d -v meuvolume:/app nginx
+
+docker volume prune -> Mata tudo o que não é utilizado de volumes;

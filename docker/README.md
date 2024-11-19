@@ -83,3 +83,7 @@ O Dockerfile é um dos arquivos principais onde queremos chegar (receita do bolo
 
 **-t** -> Representa a minha tag na minha contya no docker hub;  
 **.** -> Representa em qual pasta existe meu Dockerfile;
+
+## Uma dica bem prática do Wesley willians
+Se eu executar o comando **docker ps -a -q**, com a inclusão do parâmetro **-q** vai listar para mim todos os ids dos containers ativos e inativos.  
+Com isso, eu posso executar o comando **docker rm $(docker ps -a -q) -f** que vai remover todos os containers ativos e inativos;

@@ -231,9 +231,9 @@ Executar o container **ubuntu1** na rede criada:
 docker run -dit --name ubuntu1 --network minharede bash
 ```
 
-Executar o container ubuntu2 na rede criada:  
+Executar o container **ubuntu2** na rede criada:  
 ```bash
-docker run -dit --name **ubuntu2** --network minharede bash
+docker run -dit --name ubuntu2 --network minharede bash
 ```
 
 Acessar o container **ubuntu1** para fazer o teste de ping:  

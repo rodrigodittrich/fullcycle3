@@ -188,3 +188,14 @@ CMD ["nginx", "-g", "daemon off;"]
 Publicar imagem:
 ```bash
 docker push rodrigodittrich/nginx-fullcycle
+```
+
+# Network
+***Formatos de network:***  
+O formato bridge é o formato mais comum utilizado.  
+**bridge:** formato onde dois containers se comunicam entre si;  
+**host:** Neste formato, o container e a máquina rodam na mesma rede. Não é necessário fazer o direcionamento de portas;  
+**overlay:**  
+**maclan:**  
+**none:** Não tem nenhum rede no container;
+

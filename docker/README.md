@@ -93,27 +93,51 @@ docker run -d --name nginx -p 8080:80 --mount type=bind,source="$(pwd)"/html,tar
 ```
 
 # Trabalhando com volumes
-Comandos com "docker volume"
+Comandos com **"docker volume"**
 
-**docker volume ls** -> Lista os volumes criados;
+Listar os volumes criados;
+```bash
+docker volume ls
+```
 
-**docker volume create meuvolume** -> Cria um novo volume com o nome "meuvolume";
+Criar um novo volume com o nome **"meuvolume"**;
+```bash
+docker volume create meuvolume
+```
 
-**docker volume inspect meuvolume** -> Mostra os dados do volume;
+Mostrar os dados do volume;
+```bash
+docker volume inspect meuvolume
+```
 
 ### Executar um container em cima do volume criado:
-**docker run -d --name nginx -d --mount type=volume,source=meuvolume,target=/app docker exec -it nginx bash**   
+```bash
+docker run -d --name nginx -d --mount type=volume,source=meuvolume,target=/app docker exec -it nginx bash
+```
+
 **Testar a criação de um arquivo:** Acessar diretório app, criar arquivo (touch teste) e listar arquivo (ls);
 
-**docker run -d --name nginx2 -d -v meuvolume:/app nginx**
+```bash
+docker run -d --name nginx2 -d -v meuvolume:/app nginx*
+```
 
-**docker volume prune** -> Mata tudo o que não é utilizado de volumes;
+Matar tudo o que não é utilizado de volumes;
+```bash
+docker volume prune
+```
 
 # Trabalhando com imagens
 **Docker hub:** https://hub.docker.com/
 
-**docker images** -> Lista todas as imagens existentes;
-**docker rmi php:latest** -> Remove uma imagem;
+Listar todas as imagens existentes;
+```bash
+docker images
+```
+
+Remover uma imagem;
+```bash
+docker rmi php:latest
+```
 
 # Criando a primeira imagem com Dockerfile
 
@@ -121,9 +145,11 @@ O Dockerfile é um dos arquivos principais onde queremos chegar (receita do bolo
 
 ### Criar minha primeira imagem e salvar no meu docker Hub
 
-**docker build -t rodrigodittrich/nginx-com-vim:latest .**
+```bash
+docker build -t rodrigodittrich/nginx-com-vim:latest .
+```
 
-**-t** -> Representa a minha tag na minha contya no docker hub;  
+**-t** -> Representa a minha tag na minha conta no docker hub;  
 **.** -> Representa em qual pasta existe meu Dockerfile;
 
 ## Uma dica bem prática do Wesley willians

@@ -44,33 +44,53 @@ docker run -d -p 8080:80 nginx
 
 # Removendo containers:
 
-**docker rm 3d8eb6bb3bac** -> Remove um container pelo id;
+Remover um container pelo id;
+```bash
+docker rm 3d8eb6bb3bac
+```
 
-**docker rm kind_hypatia** -> Remove um container pelo nome;
+Remover um container pelo nome;
+```bash
+docker rm kind_hypatia
+```
 
-**docker rm kind_hypatia -f** -> Força a remoção de um container;
+Forçar a remoção de um container;
+```bash
+docker rm kind_hypatia -f
+```
 
 ### Acessando e alterando arquivos em um container:
 
 Utilização do comando exec;
 
-**docker exec ngnix ls** -> Lista os arquivos do container ngnix;
+Listar os arquivos do container ngnix;
+```bash
+docker exec ngnix ls
+```
 
 É necessário rodar com modo interativo e com ttui para rodar os comando dentro do container.
-**docker exec -it ngnix bash** -> Acessado via terminal o container do ngnix;
-
+Acessar via terminal o container do ngnix;
+```bash
+docker exec -it ngnix bash
+```
 
 # Alterar arquivo index.html do ingnix
 
-**Acessar o deretóio:** cd /usr/share/nginx/html/
+Acessar o diretório;
+```bash
+cd /usr/share/nginx/html/
+```
 
 **Importante:** Tudo o que é alterado dentro de um container, depois que remover o container e subir ele novamente, o que foi feito anteriormente será perdido.
 
 # Iniciando o container com bind mounts
 ### Exemplos
+```bash
 docker run -d --name nginx -p 8080:80 -v /Users/rodrigodittrich/Projetos/fullcycle3/docker/html/:/usr/share/nginx/html nginx
-
+```
+```bash
 docker run -d --name nginx -p 8080:80 --mount type=bind,source="$(pwd)"/html,target=/usr/share/nginx/html nginx
+```
 
 # Trabalhando com volumes
 Comandos com "docker volume"

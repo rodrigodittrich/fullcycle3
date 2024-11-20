@@ -89,13 +89,34 @@ Se eu executar o comando **docker ps -a -q**, com a inclusão do parâmetro **-q
 Com isso, eu posso executar o comando **docker rm $(docker ps -a -q) -f** que vai remover todos os containers ativos e inativos;
 
 # Entrypoint x CMD
+```dockerfile
 FROM ubuntu:latest
 
 ENTRYPOINT ["echo", "Hello "]
 
 CMD [ "World"]
+```
 
 Quando for executado o comando **docker run --rm rodrigodittrich/hello** a mensagem de saída será **"Hello world"**;  
 Quando for executado o comando **docker run --rm rodrigodittrich/hello Rodrigo** a mensagem de saída será **"Hello Rodrigo"**;  
 
 O EntryPoint é sempre um comando fixo, e o CMD é um comando variável que entra como parâmetro com o Entrypoint;
+
+# Publicando imagem no dockerHub
+Para publicar uma imagem no docker hub, será necessário logar pelo terminal (docker login) e entrar com as credenciais da sua conta no docker hub.  
+
+### Publicando uma imagem no docker hub baseado no nginx:
+Dockerfile:
+```dockerfile
+FROM nginx:latest
+
+COPY html /usr/share/nginx/html
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+Publicar imagem:
+```bash
+docker push rodrigodittrich/nginx-fullcycle

@@ -26,13 +26,21 @@ Iniciar e remover o container;
 docker run -i -t --rm ubuntu:latest bash
 ```
 
-# Executando e publicando portas com nginx
-
+# Executar e publicar portas com nginx
+Inicialização padrão
+```bash
 docker run nginx
+```
 
-**docker run -p 8080:80 nginx** -> Inicia o container dizendo que a porta 8080 vai direcionar na porta 80 do proceso;
+Iniciar o container dizendo que a porta 8080 vai direcionar na porta 80 do proceso;
+```bash
+docker run -p 8080:80 nginx
+```
 
-**docker run -d -p 8080:80 nginx** -> Com o parâmetro -d, inicia o container mantendo o terminal livre e o container continua em execução;
+Usar o parâmetro **-d** para iniciar o container mantendo o terminal livre e manter o container em execução;
+```bash
+docker run -d -p 8080:80 nginx
+```
 
 # Removendo containers:
 

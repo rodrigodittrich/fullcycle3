@@ -200,3 +200,51 @@ O formato bridge é o formato mais comum utilizado.
 **overlay:**  
 **maclan:**  
 **none:** Não tem nenhum rede no container;
+
+### Bridge
+Utilização dos comandos **docker network**
+
+Listar as redes disponíveis:  
+```bash
+docker network ls
+```
+
+Remover todas as redes não utilizadas:  
+```bash
+docker network prune
+```
+
+Verificar os detalhes da rede dos containers ativos
+```bash
+docker network inspect bridge
+```
+
+**Resolver a comunicação pelo nome do container**
+
+Criar uma nova rede:  
+```bash
+docker network create --driver bridge minharede
+```
+
+Executar o container **ubuntu1** na rede criada:  
+```bash
+docker run -dit --name ubuntu1 --network minharede bash
+```
+
+Executar o container ubuntu2 na rede criada:  
+```bash
+docker run -dit --name **ubuntu2** --network minharede bash
+```
+
+Acessar o container **ubuntu1** para fazer o teste de ping:  
+```bash
+docker exec -it ubuntu1 bash
+ping container2
+```
+
+Conectar um container que foi criado sem definir a rede:
+```bash
+network connect minharede ubuntu3
+docker exec -it ubuntu3 bash
+ping container2
+```

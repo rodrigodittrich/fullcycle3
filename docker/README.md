@@ -252,3 +252,13 @@ ping container2
 ### Host
 Docker foi feito para rodar no Linux, então este tipo de rede não funciona muito bem no Mac utilizando o Docker Desktop. Utilizando o OrbStack funciona.
 No Windows funciona quando tem instalado o WSL.
+
+### Acessar o container da máquina e vice-versa
+Suponhamos que temos um serviço executando na máquina local na porta 8000 e nosso docker container precisa por algum motivo acessar esta aplicação pelo container.  
+
+**Exemplo**  
+Criar um container de exemplo:  
+```bash
+docker run --rm -it --name ubuntu ubuntu bash
+curl http://host.docker.internal:8000
+```

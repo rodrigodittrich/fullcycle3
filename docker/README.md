@@ -87,3 +87,15 @@ O Dockerfile é um dos arquivos principais onde queremos chegar (receita do bolo
 ## Uma dica bem prática do Wesley willians
 Se eu executar o comando **docker ps -a -q**, com a inclusão do parâmetro **-q** vai listar para mim todos os ids dos containers ativos e inativos.  
 Com isso, eu posso executar o comando **docker rm $(docker ps -a -q) -f** que vai remover todos os containers ativos e inativos;
+
+# Entrypoint x CMD
+FROM ubuntu:latest
+
+ENTRYPOINT ["echo", "Hello "]
+
+CMD [ "World"]
+
+Quando for executado o comando **docker run --rm rodrigodittrich/hello** a mensagem de saída será **"Hello world"**;  
+Quando for executado o comando **docker run --rm rodrigodittrich/hello Rodrigo** a mensagem de saída será **"Hello Rodrigo"**;  
+
+O EntryPoint é sempre um comando fixo, e o CMD é um comando variável que entra como parâmetro com o Entrypoint;

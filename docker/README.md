@@ -248,3 +248,7 @@ network connect minharede ubuntu3
 docker exec -it ubuntu3 bash
 ping container2
 ```
+
+### Host
+Docker foi feito para rodar no Linux, então este tipo de rede não funciona muito bem no Mac utilizando o Docker Desktop. Utilizando o OrbStack funciona.
+No Windows funciona quando tem instalado o WSL.

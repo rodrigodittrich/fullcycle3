@@ -1,16 +1,30 @@
 # Full Cycle 3.0 - Docker
 
-**Iniciano com Docker**
+# Iniciando com Docker
 
-**docker ps** -> lista os containes que estão em execução;
+Listar os containes que estão em execução;
+```bash
+docker ps
+```
+Listar os containes em execução incluíndo os containers parados;
+```bash
+docker ps -a
+```
 
-**docker ps -a** -> lista os containes em execução incluíndo os containers parados;
+Iniciar um container e na sequência descartar o processo;
+```bash
+docker run hello
+```
 
-**docker run hello** -> Inicia o container e na sequência o processo é descartado;
+Iniciar um novo container com ubuntu indicando a versão **"latest"** e já entrar em modo bash;
+```bash
+docker run -i -t ubuntu:latest bash
+```
 
-**docker run -i -t ubuntu:latest bash** -> Inicia um novo container com ubuntu indicando a versão "latest" e já entra em modo bash;
-
-**docker run -i -t --rm ubuntu:latest bash** -> Inicia e remove o container;
+Iniciar e remover o container;
+```bash
+docker run -i -t --rm ubuntu:latest bash
+```
 
 # Executando e publicando portas com nginx
 

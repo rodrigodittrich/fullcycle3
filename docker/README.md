@@ -262,3 +262,9 @@ Criar um container de exemplo:
 docker run --rm -it --name ubuntu ubuntu bash
 curl http://host.docker.internal:8000
 ```
+
+### Instalando um framework em um container
+
+run -it --name php php:7.4-cli bash
+apt-get update
+.....

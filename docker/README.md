@@ -301,3 +301,20 @@ docker push rodrigodittrich/laravel
 ```
 
 ## Criar uma aplicação Node.js sem o Node
+Vamos executar o container no diretório do node na porta 3000
+
+**Executar o container:**  
+```
+docker run --rm -it -v $(pwd)/:/usr/src/app -p 3000:3000 node:15 bash
+```
+
+**Acessar o diretório da aplicação, executar o init e install do node:**  
+```shell
+cd usr/src/app/
+```
+```
+npm init
+```
+```
+npm install express --save
+```

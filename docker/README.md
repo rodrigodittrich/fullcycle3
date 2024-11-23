@@ -274,7 +274,7 @@ vamos criar um container com o framework lavavel
 
 **Criar o arquivo Dockerfile com todos os passos**
 
-**Criar a imagem
+**Criar a imagem**
 ```
 docker build -t rodrigodittrich/laravel:latest .
 ```

@@ -192,16 +192,16 @@ docker push rodrigodittrich/nginx-fullcycle
 
 # Network
 
-## tipos de network:   
+## tipos de network:  
 O formato bridge é o formato mais comum utilizado.  
 
-**bridge:** formato onde dois containers se comunicam entre si;  
-**host:** Neste formato, o container e a máquina rodam na mesma rede. Não é necessário fazer o direcionamento de portas;  
-**overlay:**  
-**maclan:**  
-**none:** Não tem nenhum rede no container;
+* **bridge:** formato onde dois containers se comunicam entre si;  
+* **host:** Neste formato, o container e a máquina rodam na mesma rede. Não é necessário fazer o direcionamento de portas;  
+* **overlay:**  
+* **maclan:**  
+* **none:** Não tem nenhum rede no container;
 
-### Bridge
+## Bridge
 Utilização dos comandos **docker network**
 
 Listar as redes disponíveis:  
@@ -249,11 +249,11 @@ docker exec -it ubuntu3 bash
 ping container2
 ```
 
-### Host
+## Host
 Docker foi feito para rodar no Linux, então este tipo de rede não funciona muito bem no Mac utilizando o Docker Desktop. Utilizando o OrbStack funciona.
 No Windows funciona quando tem instalado o WSL.
 
-### Acessar o container da máquina e vice-versa
+## Acessar o container da máquina e vice-versa
 Suponhamos que temos um serviço executando na máquina local na porta 8000 e nosso docker container precisa por algum motivo acessar esta aplicação pelo container.  
 
 **Exemplo**  
@@ -268,3 +268,34 @@ curl http://host.docker.internal:8000
 run -it --name php php:7.4-cli bash
 apt-get update
 .....
+
+## Instalar um framework em um container
+vamos criar um container com o framework lavavel
+
+**Criar o arquivo Dockerfile com todos os passos**
+
+**Criar a imagem
+```
+docker build -t rodrigodittrich/laravel:latest .
+```
+
+**Criar um container com a imagem laravel**
+```
+docker run -d --rm --name laravel -p 8000:8000 rodrigodittrich/laravel
+```
+
+**Verificar os logs do laravel**
+```
+docker logs laravel
+```
+
+**Criar um container com a porta 8001 substituindo o que tem no CMD padrão**  
+Por padrão, o laravel vai subir na porta 8000 liberando o acesso para qualquer host. Como temos em nosso Dockerfile o CMD com este comando padrão, ao criar o container podemos substituir o comando padrão liberando um host específico e uma porta específica.
+```
+docker run --rm -d --name laravel -p 8001:8001 rodrigodittrich/laravel --host=0.0.0.0 --port=8001
+```
+
+**Publicar a imagem para o Docker hub**
+```
+docker push rodrigodittrich/laravel
+```

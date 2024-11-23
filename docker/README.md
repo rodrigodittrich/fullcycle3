@@ -323,7 +323,7 @@ npm install express --save
 Será usado como base um arquivo "Dockerfile" considerando um ambiente de desenvolvimento e um arquivo "Dockerfile.prod" que será usado para criar uma imagem empacotando toda a aplicação.
 
 **Criar a imagem padrão:**
-``````
+```
 docker build -t rodrigodittrich/hello-express .
 ```
 
@@ -337,3 +337,8 @@ docker run -p 3000:3000 rodrigodittrich/hello-express:latest
 docker push rodrigodittrich/hello-express
 ```
 
+**Criar a imagem usando como base o arquivo Dockerfile.prod**  
+O que muda aqui é que no final do comando padrão que é utilizando para fazer o build de uma imagem, é utilizado o parâmetro "-f" e é especificado o nome do arquivo Docherfile.prod.
+```
+docker build -t rodrigodittrich/hello-express . -f Dockerfile.prod
+```

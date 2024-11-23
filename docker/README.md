@@ -318,3 +318,22 @@ npm init
 ```
 npm install express --save
 ```
+
+## Gerando uma imagem da aplicação Node.js
+Será usado como base um arquivo "Dockerfile" considerando um ambiente de desenvolvimento e um arquivo "Dockerfile.prod" que será usado para criar uma imagem empacotando toda a aplicação.
+
+**Criar a imagem padrão:**
+``````
+docker build -t rodrigodittrich/hello-express .
+```
+
+**Criar o container:**
+```
+docker run -p 3000:3000 rodrigodittrich/hello-express:latest
+```
+
+**Subir a imagem no Docker hub**
+```
+docker push rodrigodittrich/hello-express
+```
+

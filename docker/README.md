@@ -433,3 +433,66 @@ Para criar um banco de dados MySQL, vamos configurar o arquivo "docker-compose.y
     volumes: 
       - ./mysql:/var/lib/mysql
 ```
+
+## Node x MySQL
+<h5 style="text-align: justify;">
+Será alterado o arquivo "index.js" do app node para conectar no banco de dados MySQL e fazer o insert de um registro.
+Com os dois containers iniciados (docker-compose up -d --build) será executado o arquivo "index.js"para inserir o registro.
+</h5>
+
+**Acessar o banco de dados e criar uma tabela**  
+```
+docker exec -it db bash
+```
+
+```
+mysql -u root -p
+```
+
+```
+use nodedb
+```
+
+```sql
+create table people(id int not null auto_increment, name varchar(255), primary key(id));
+```
+
+```
+mysql> desc people;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int          | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(255) | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+```
+
+**Acessar o containder do node, instalar o mysql e executar o arquivo "index.js"**
+```
+npm install mysql --save
+```
+
+```
+docker exec -it app bash
+```
+
+```
+node index.js
+```
+
+**Resultado**
+```sql
+select * from people;
+```
+
+```
++----+------------------+
+| id | name             |
++----+------------------+
+|  1 | Rodrigo dittrich |
++----+------------------+
+1 row in set (0.00 sec)
+```
+
+docker % docker exec -it app bash
+npm install mysql --save

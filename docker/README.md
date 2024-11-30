@@ -381,3 +381,31 @@ docker run -d --network laranet --name laravel rodrigodittrich/laravel:prod
 ```
 docker run -d --network laranet --name nginx -p 8080:80 rodrigodittrich/nginx:prod
 ```
+
+# Trabalhando com docker compose
+
+## Iniciar os primeiros containers nginx e laravel com docker compose
+```yaml
+version: '3.9'
+
+services:
+  laravel:
+    image: rodrigodittrich/laravel:prod
+    container_name: laravel
+    networks:
+      - laranet
+
+  nginx:
+    image: rodrigodittrich/nginx:prod
+    container_name: nginx
+    networks:
+      - laranet
+    ports:
+      - "8080:80"
+
+networks:
+  laranet:
+    driver: bridge
+```
+
+**Documentação** [Docker Compose](https://docs.docker.com/compose/)

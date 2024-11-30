@@ -409,3 +409,20 @@ networks:
 ```
 
 **Documentação** [Docker Compose](https://docs.docker.com/compose/)
+
+## Realizar build de images com docker-compose
+No momento de iniciar os containers de um "docker-compose", é possível fazer o build das imagens antes do container iniciar, pois o arquivo Dockerfile pode sofrer alterações, e com isso é necessário fazer o build das imagens novamente.
+
+No arquivo "docker-compose.yaml" existe uma opção para adicionar o build de cada imagem indicando o local de cada "Dockerfile", e o nome do arquivo "Dockerfile".  
+
+**Exemplo:**  
+```yaml
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile.prod
+```
+
+Com o arquivo "docker-compose.yaml" atualizado, o comando abaixo irá fazer o build das imagens e iniciar os containers.
+```
+docker-compose up -d --build
+```

@@ -426,3 +426,10 @@ Com o arquivo "docker-compose.yaml" atualizado, o comando abaixo irá fazer o bu
 ```
 docker-compose up -d --build
 ```
+
+## Criar um banco de dados mySQL
+Para criar um banco de dados MySQL, vamos configurar o arquivo "docker-compose.yaml" para iniciar o container com um volume que irá armazenar a base de dados no diretório "mysql". Com isso, sempre que o container for removido, o banco de dados irá permanecer no local com as suas informações.
+```yaml
+    volumes: 
+      - ./mysql:/var/lib/mysql
+```

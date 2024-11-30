@@ -1,24 +1,18 @@
 services:
-  laravel:
-    build:
-      context: ./laravel
-      dockerfile: Dockerfile.prod
-    image: rodrigodittrich/laravel:prod
-    container_name: laravel
-    networks:
-      - laranet
-
-  nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile.prod
-    image: rodrigodittrich/nginx:prod
-    container_name: nginx
-    networks:
-      - laranet
-    ports:
-      - "8080:80"
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: db
+    restart: always
+    tty: true
+    volumes: 
+      - ./mysql:/var/lib/mysql
+    environment: 
+      - MYSQL_DATABASE=nodedb
+      - MYSQL_ROOT_PASSWORD=root
+    networks: 
+      - node-network
 
 networks:
-  laranet:
+  node-network:
     driver: bridge

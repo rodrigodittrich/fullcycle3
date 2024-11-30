@@ -342,3 +342,42 @@ O que muda aqui é que no final do comando padrão que é utilizando para fazer 
 ```
 docker build -t rodrigodittrich/hello-express . -f Dockerfile.prod
 ```
+
+# Otimizando imagens
+
+## Otimização utilizando multistage Building
+O objetivo de fazer a otimização é para que a imagem reduza o seu tamanho.
+
+## Nginx com proxy reverso
+O obejtivo é criar duas imagens (nginx e laravel) para que o nginx trabalhe com proxy reverso e quando um acesso chegar no nginx vai fazer a chamada no php.
+
+**Importante:**  
+A porta 9000 do container do laravel, não fica disponível na máquina loca, apenas o container do nginx que tem acesso na porta 9000 do container do laravel.
+
+**Criar um novo arquivo de configuração do nginx:**  
+**Documentação:** [Laravel com nginx](https://laravel.com/docs/11.x/deployment#nginx)
+
+**Criar uma rede para usar nos containers nginx e laravel**  
+```
+docker network create laranet
+```
+
+**Criar a imagem para o nginx**
+```
+docker build -t rodrigodittrich/nginx:prod . -f Dockerfile.prod
+```
+
+**Criar a imagem para o laravel**
+```
+docker build -t rodrigodittrich/laravel:prod . -f Dockerfile.prod
+```
+
+**Executar o container do laravel**
+```
+docker run -d --network laranet --name laravel rodrigodittrich/laravel:prod
+```
+
+**Executar o container do nginx**
+```
+docker run -d --network laranet --name nginx -p 8080:80 rodrigodittrich/nginx:prod
+```
